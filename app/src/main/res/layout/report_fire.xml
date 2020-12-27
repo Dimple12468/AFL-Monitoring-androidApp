@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ReportFire"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:id="@+id/for_images">
+
+    <include
+        android:id="@+id/app__bar_report"
+        layout="@layout/app_bar_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/report_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app__bar_report">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/btn_before_text">
+
+                </EditText>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/btn_before_text">
+
+                </EditText>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/btn_before_text">
+
+                </EditText>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectanglebg" />
+
+                    <TextView
+                        android:id="@+id/text_dummy_hint_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Name"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Name"
+                        android:textColorHint="#707070"
+                        app:hintTextAppearance="@style/HintTextStyle">
+
+                        <EditText
+                            android:id="@+id/edit_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="text|textCapWords"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="147dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/report_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app__bar_report">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Report a Fire"
+                    android:textColor="@color/black"
+                    android:textSize="23dp" /-->
+
+                <!--Name-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectanglebg" />
+
+                    <TextView
+                        android:id="@+id/text_dummy_hint_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Name"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Name"
+                        android:textColorHint="#707070"
+                        app:hintTextAppearance="@style/HintTextStyle">
+
+                        <EditText
+                            android:id="@+id/edit_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="text|textCapWords"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+                <!--Phone Number-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectanglebg" />
+
+                    <TextView
+                        android:id="@+id/text_dummy_hint_pnumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Phone Number"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Phone Number"
+                        android:textColorHint="#707070"
+                        app:hintTextAppearance="@style/HintTextStyle">
+
+                        <EditText
+                            android:id="@+id/edit_pnumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="text|textCapWords"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+                <!--Phone Number-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectanglebg" />
+
+                    <TextView
+                        android:id="@+id/text_dummy_hint_villagename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Village Name(Optional)"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Village Name(Optional)"
+                        android:textColorHint="#707070"
+                        app:hintTextAppearance="@style/HintTextStyle">
+
+                        <EditText
+                            android:id="@+id/edit_villagename"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="text|textCapWords"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rectanglebg"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dialog" />
+                <!--Address1-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectanglebg" />
+
+                    <TextView
+                        android:id="@+id/text_dummy_hint_address1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Address1(Optional)"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Address1(Optional)"
+                        android:textColorHint="#707070"
+                        app:hintTextAppearance="@style/HintTextStyle">
+
+                        <EditText
+                            android:id="@+id/edit_address1"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="text|textMultiLine"
+                            android:maxLines="3" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+                <!--Incident Reason-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="5dp">
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectanglebg" />
+
+                    <TextView
+                        android:id="@+id/text_dummy_hint_address2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Address2(Optional)"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:visibility="invisible" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ti5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="-30dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Address2(Optional)"
+                        android:textColorHint="#707070"
+                        app:hintTextAppearance="@style/HintTextStyle">
+
+                        <EditText
+                            android:id="@+id/edit_address2"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="text|textMultiLine"
+                            android:maxLines="3" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!--com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="32dp"
+            android:tint="@color/white"
+            app:backgroundTint="#E03B3B"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/submit_fire_report"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:srcCompat="@drawable/camera_fab" /-->
+
+        <Button
+            android:id="@+id/submit_fire_report"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="#73DC5C58"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="32dp"
+            android:tint="@color/white"
+            app:backgroundTint="#E03B3B"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/submit_fire_report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/camera_fab" />
+
+        <!--ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="32dp"
+            android:tint="@color/white"
+            app:backgroundTint="#E03B3B"
+            app:elevation="6dp"
+            app:layout_constraintBottom_toTopOf="@id/submit_fire_report"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:srcCompat="@drawable/camera_fab/-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/images_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app__bar_report">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="32dp"
+            android:tint="@color/white"
+            app:backgroundTint="#E03B3B"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/save_images"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/camera_fab" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvimages"
+            android:layout_width="409dp"
+            android:layout_height="510dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/save_images"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="#DC5C58"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
