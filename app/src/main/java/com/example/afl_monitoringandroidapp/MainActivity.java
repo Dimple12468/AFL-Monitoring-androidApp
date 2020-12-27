@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     i = new Intent( splash_page.this ,login_activity.class);
                 */
                 Intent i;
-                 i = new Intent( splash_page.this ,InitialPage.class);
+                 i = new Intent( MainActivity.this ,InitialPage.class);
                 startActivity(i);
                 finish();
             }

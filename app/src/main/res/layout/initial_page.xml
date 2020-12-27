@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InitialPage"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/app_name"
+        android:textSize="28sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/arial"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textStyle="bold"/>
+
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/guide"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintGuide_begin="20dp"-->
+    <!--        app:layout_constraintGuide_percent="0.38"/>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/combine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/app_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <!--        app:layout_constraintTop_toTopOf="@id/guide"-->
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Report,Monitor Active \n Fire Locations"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/arial"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/report_fire"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="Report a fire"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/detail"
+            app:layout_constraintStart_toStartOf="@id/detail"
+            app:layout_constraintEnd_toEndOf="@id/detail"
+            android:textSize="15sp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/arial"
+            android:textColor="@color/white"
+            android:background="@drawable/selection_page_bg"/>
+        <!--            android:layout_below="@id/detail"
+                    android:layout_centerHorizontal="true"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"-->
+
+        <Button
+            android:id="@+id/log_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginTop="20dp"
+            android:text="Log In"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/report_fire"
+            app:layout_constraintStart_toStartOf="@id/report_fire"
+            app:layout_constraintEnd_toEndOf="@id/report_fire"
+            android:textSize="15sp"
+            android:fontFamily="@font/arial"
+            android:textColor="@color/black"
+            android:background="@drawable/selection_page_login"/>
+
+
+        <TextView
+            android:id="@+id/sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/log_in"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Sign Up"
+            android:textColor="#E03B3B"
+            android:textSize="17sp"
+            android:layout_marginTop="30dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:fontFamily="@font/arial"
+            android:clickable="true"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
