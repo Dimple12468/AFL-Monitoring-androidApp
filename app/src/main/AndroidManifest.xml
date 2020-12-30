@@ -16,7 +16,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,14 +23,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AFLMonitoringandroidApp">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".InitialPage"
             android:screenOrientation="portrait"
@@ -40,19 +40,24 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge">
         </activity>
         <activity
             android:name=".RegistrationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
         </activity>
-
         <activity
             android:name=".ReportFire"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
         </activity>
+        <activity
+            android:name=".Home"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar">
+        </activity>
+
     </application>
 
 </manifest>

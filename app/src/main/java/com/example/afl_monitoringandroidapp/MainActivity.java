@@ -25,18 +25,17 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                /*
                 SharedPreferences preferences = getSharedPreferences("tokenFile", Context.MODE_PRIVATE);
                 String typeofuser = preferences.getString("role","");
                 String username = preferences.getString("Name","");
                 Intent i;
                 if(typeofuser.isEmpty()){
-                    i = new Intent( splash_page.this ,Initial_page.class);
+                    i = new Intent(MainActivity.this ,InitialPage.class);
                 }else
-                    i = new Intent( splash_page.this ,login_activity.class);
-                */
-                Intent i;
-                 i = new Intent( MainActivity.this ,InitialPage.class);
+                    i = new Intent(MainActivity.this ,LoginActivity.class);
+
+//                Intent i;
+//                 i = new Intent( MainActivity.this ,InitialPage.class);
                 startActivity(i);
                 finish();
             }
