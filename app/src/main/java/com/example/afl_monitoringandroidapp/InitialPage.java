@@ -46,7 +46,7 @@ public class InitialPage extends AppCompatActivity {
         report_fire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InitialPage.this, LoginActivity.class);
+                Intent intent = new Intent(InitialPage.this,ReportFire.class);
                 startActivity(intent);
                 //Toast.makeText(Initial_page.this, "report clicked", Toast.LENGTH_SHORT).show();
             }
