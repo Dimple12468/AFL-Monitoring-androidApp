@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/adminHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/adminLocation"
+        android:orderInCategory="2"
+        android:icon="@drawable/location"
+        android:title="Location"/>
+    <item
+        android:id="@+id/adminAdo"
+        android:orderInCategory="3"
+        android:title="ADO"
+        android:icon="@drawable/ic_person_black_24dp"
+        />
+
+    <item
+        android:id="@+id/adminDda"
+        android:orderInCategory="4"
+        android:icon="@drawable/ic_dda_icon_black_24dp"
+        android:title="DDA"/>
+
+    <item
+        android:id="@+id/adminStats"
+        android:title="Stats"
+        android:orderInCategory="5"
+        android:icon="@drawable/ic_stat_icon_black_24dp"
+        />
+
+</menu>

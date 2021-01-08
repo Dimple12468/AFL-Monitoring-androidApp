@@ -175,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "login for farmer", Toast.LENGTH_SHORT).show();
                             }else if (typeOfUser.equals("2")) {
                                 intent = new Intent(LoginActivity.this, Home.class);
+//                                new Home(typeOfUser);
                                 startActivity(intent);
                                 finish();
                             }else if (typeOfUser.equals("3")) {

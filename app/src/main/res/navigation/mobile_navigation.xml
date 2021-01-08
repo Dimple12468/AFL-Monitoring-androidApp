@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/adminHome">
+
+    <fragment
+        android:id="@+id/adminHome"
+        android:name="com.example.afl_monitoringandroidapp.adminTabs.adminHome"
+        android:label="@string/admin_home"
+        tools:layout="@layout/fragment_admin_home" />
+
+    <fragment
+        android:id="@+id/adminLocation"
+        android:name="com.example.afl_monitoringandroidapp.adminTabs.adminLocations"
+        android:label="@string/admin_locations"
+        tools:layout="@layout/fragment_admin_locations" />
+
+    <fragment
+        android:id="@+id/adminAdo"
+        android:name="com.example.afl_monitoringandroidapp.adminTabs.adminAdo"
+        android:label="@string/admin_ado"
+        tools:layout="@layout/fragment_admin_ado" />
+
+    <fragment
+        android:id="@+id/adminDda"
+        android:name="com.example.afl_monitoringandroidapp.adminTabs.adminDda"
+        android:label="@string/admin_dda"
+        tools:layout="@layout/fragment_admin_dda" />
+
+    <fragment
+        android:id="@+id/adminStats"
+        android:name="com.example.afl_monitoringandroidapp.adminTabs.adminStats"
+        android:label="@string/admin_stats"
+        tools:layout="@layout/fragment_admin_stats" />
+</navigation>
