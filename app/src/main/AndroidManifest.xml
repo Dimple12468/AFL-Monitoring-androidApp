@@ -58,6 +58,14 @@
             android:theme="@style/NoActionBar">
         </activity>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAUKi9N7ZNLUj3QjYK9Zn-7PxVMw85koOY" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>
