@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_ado"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home"
+        android:visible="true" />
+    <item
+        android:id="@+id/pending_ado"
+        android:icon="@drawable/ic_pending"
+        android:title="@string/pending"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/completed_ado"
+        android:icon="@drawable/ic_completed"
+        android:title="@string/completed"
+        android:visible="true" />
+
+</menu>

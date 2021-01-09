@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_dda"
+    app:startDestination="@id/home_dda">
+
+    <fragment
+        android:id="@+id/home_dda"
+        android:name="com.example.afl_monitoringandroidapp.adminTabs.adminHome"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_admin_home" />
+
+    <fragment
+        android:id="@+id/pending_dda"
+        android:name="com.example.afl_monitoringandroidapp.statusTabs.pending"
+        android:label="@string/pending"
+        tools:layout="@layout/fragment_pending" />
+
+    <fragment
+        android:id="@+id/ongoing_dda"
+        android:name="com.example.afl_monitoringandroidapp.statusTabs.ongoing"
+        android:label="@string/ongoing"
+        tools:layout="@layout/fragment_ongoing" />
+
+    <fragment
+        android:id="@+id/completed_dda"
+        android:name="com.example.afl_monitoringandroidapp.statusTabs.completed"
+        android:label="@string/completed"
+        tools:layout="@layout/fragment_completed" />
+
+    <fragment
+        android:id="@+id/ado_dda"
+        android:name="com.example.afl_monitoringandroidapp.ado"
+        android:label="@string/ado"
+        tools:layout="@layout/ado_report_image_item" />
+
+</navigation>

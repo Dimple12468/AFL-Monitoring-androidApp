@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private String urlGet, urlPost;
     private Button onClickLogin;
     private String token, typeOfUser, Name;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,11 +104,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void Login(final String email, final String password) {
 
-        final ProgressDialog dialog = new ProgressDialog(LoginActivity.this,R.style.AlertDialog);
+        dialog = new ProgressDialog(LoginActivity.this,R.style.AlertDialog);
 
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("Logging In....");
         dialog.show();
+
 
         Log.d(TAG, "onResponse: login clicked");
         final RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
@@ -307,6 +309,15 @@ public class LoginActivity extends AppCompatActivity {
         WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
         wmlp.gravity = Gravity.TOP | Gravity.CENTER;
         alertDialog.show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
     }
 
 }

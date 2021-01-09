@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_dda"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home"
+        android:visible="true" />
+    <item
+        android:id="@+id/pending_dda"
+        android:icon="@drawable/ic_pending"
+        android:title="@string/pending"
+        android:visible="true" />
+    <item
+        android:id="@+id/ongoing_dda"
+        android:icon="@drawable/ic_ongoing"
+        android:title="@string/ongoing"
+        android:visible="true" />
+    <item
+        android:id="@+id/completed_dda"
+        android:icon="@drawable/ic_completed"
+        android:title="@string/completed"
+        android:visible="true" />
+    <item
+        android:id="@+id/ado_dda"
+        android:title="@string/ado"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:visible="true"/>
+
+
+</menu>
