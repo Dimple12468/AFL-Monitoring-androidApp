@@ -41,6 +41,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.clustering.ClusterManager;
 
 import org.json.JSONArray;
@@ -59,16 +60,18 @@ adminHome extends Fragment {
     private String token;
     private String TAG = "Map";
     private GoogleMap map = null;
-    private String url_unassigned = Globals.map_Unassigned_Admin;
-    private String url_assigned = Globals.map_Assigned_Admin;
-    private String url_count = Globals.map_Count_Admin;
-    private String next;
+    private String url_unassigned;
+    private String url_assigned;
+//    private String url_count = Globals.map_Count_Admin;
+    private String next,next1;
     private RequestQueue requestQueue;
     private int count = 0 ;
     private ClusterManager<MyItem> mClusterManager;
     private ArrayList<Double> latitude;
     private ArrayList<Double> longitude;
     private ArrayList<String> villname;
+    private String typeOfUser;
+    private FloatingActionButton fab;
 
     public adminHome() {
         // Required empty public constructor
@@ -81,9 +84,10 @@ adminHome extends Fragment {
         adminhomeViewModel = new ViewModelProvider(this).get(adminHomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_admin_home, container, false);
         mapFragment = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map));
+        fab = (FloatingActionButton) root.findViewById(R.id.fab);
 
         SharedPreferences preferences = getActivity().getSharedPreferences("tokenFile", Context.MODE_PRIVATE);
-        String typeOfUser = preferences.getString("role", "");
+        typeOfUser = preferences.getString("role", "");
         token = preferences.getString("key", "");
 
         latitude = new ArrayList<>();
@@ -95,16 +99,30 @@ adminHome extends Fragment {
                 Toast.makeText(getActivity(), "login for farmer", Toast.LENGTH_SHORT).show();
                 break;
             case "2":
-                Toast.makeText(getActivity(), "login for ado", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "login for ado", Toast.LENGTH_SHORT).show();
+                count =0;
+                fab.setVisibility(View.GONE);
+                url_assigned = Globals.map_Pending_ADO;
+                callForMap();
                 break;
             case "3":
                 Toast.makeText(getActivity(), "login for block admin", Toast.LENGTH_SHORT).show();
                 break;
             case "4":
-                Toast.makeText(getActivity(), "login for dda", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "login for dda", Toast.LENGTH_SHORT).show();
+                count =0;
+                fab.setVisibility(View.GONE);
+                url_assigned = Globals.map_Assigned_DDA;
+                url_unassigned = Globals.map_Unassigned_DDA;
+                callForMap();
                 break;
             case "5":
 //                Toast.makeText(getActivity(), "login for admin", Toast.LENGTH_SHORT).show();
+                count =0;
+                fab.setVisibility(View.VISIBLE);
+                url_assigned = Globals.map_Assigned_Admin;
+                url_unassigned = Globals.map_Unassigned_Admin;
+//                callForMap(url_assigned,url_unassigned);
                 callForMap();
                 break;
             case "6":
@@ -135,7 +153,7 @@ adminHome extends Fragment {
         return root;
     }
 
-    void callForMap(){
+    void callForMap(/*String url_assigned, String url_unassigned*/){
         next = url_assigned;
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -194,6 +212,124 @@ adminHome extends Fragment {
         getMarkers(next);
 
     }
+
+    void getMarkers(String url) {
+        requestQueue = Volley.newRequestQueue(getContext());
+        final JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(String.valueOf(response));
+                    JSONArray jsonArray = jsonObject.getJSONArray("results");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject c = jsonArray.getJSONObject(i);
+                        Double lat = Double.valueOf(c.getString("latitude"));
+                        Double lon = Double.valueOf(c.getString("longitude"));
+//                        JSONObject villObj = c.getJSONObject("village_name");
+//                        String vill = villObj.getString("village");
+                        String vill = c.getString("village_name");
+                        latitude.add(lat);
+                        longitude.add(lon);
+                        villname.add(vill);
+                    }
+
+                } catch (JSONException e) {
+                    Log.e(TAG, "onResponse: " + e.getLocalizedMessage());
+                    e.printStackTrace();
+//                    dialog.dismiss();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onErrorResponse: " + error);
+//                pbar.setVisibility(View.GONE);
+//                dialog.dismiss();
+                if(error instanceof NoConnectionError){
+                    Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getActivity(),"something went wrong",Toast.LENGTH_LONG).show();
+                }
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("Authorization", "Token " + token);
+                return map;
+            }
+        };
+        jsonObjectRequest2.setTag("MAP REQUEST");
+        requestQueue.add(jsonObjectRequest2);
+        jsonObjectRequest2.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        requestFinished(requestQueue);
+    }
+
+    private void requestFinished(RequestQueue queue) {
+
+        queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                Log.d(TAG, "onRequestFinished: here too");
+                if (typeOfUser.equals("2")) marklocation();
+                if (typeOfUser.equals("4") || typeOfUser.equals("5")) {
+                    if (count == 0) nextRequest();
+                    else if (count == 1) marklocation();
+                }
+
+            }
+        });
+
+    }
+
+    void nextRequest(){
+        count = 1;
+        next= url_unassigned;
+        getMarkers(next);
+    }
+
+    private void marklocation() {
+        Log.d(TAG, "mark location: SIZE " + latitude.size());
+        mClusterManager = new ClusterManager<MyItem>(getActivity(), map);
+        addmarkers();
+        map.setOnCameraIdleListener(mClusterManager);
+        map.setOnMarkerClickListener(mClusterManager);
+//        dialog.dismiss();
+    }
+
+    private void addmarkers() {
+
+        for(int i = 0 ;i<latitude.size();i++){
+            double lat = latitude.get(i);
+            double lon = longitude.get(i);
+            String title = villname.get(i);
+            MyItem item = new MyItem(lat,lon,title);
+            mClusterManager.addItem(item);
+        }
+        mClusterManager.cluster();
+        Log.d(TAG, "add markers: CLUSTER SIZE " + mClusterManager.getRenderer());
+
+    }
+
 
 //    void getCount(String urlcount){
 //
@@ -265,115 +401,4 @@ adminHome extends Fragment {
 //
 //    }
 
-    void getMarkers(String url) {
-        requestQueue = Volley.newRequestQueue(getContext());
-        final JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(String.valueOf(response));
-                    JSONArray jsonArray = jsonObject.getJSONArray("results");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject c = jsonArray.getJSONObject(i);
-                        Double lat = Double.valueOf(c.getString("latitude"));
-                        Double lon = Double.valueOf(c.getString("longitude"));
-                        String vill = c.getString("village_name");
-                        latitude.add(lat);
-                        longitude.add(lon);
-                        villname.add(vill);
-                    }
-
-                } catch (JSONException e) {
-                    Log.e(TAG, "onResponse: " + e.getLocalizedMessage());
-                    e.printStackTrace();
-//                    dialog.dismiss();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "onErrorResponse: " + error);
-//                pbar.setVisibility(View.GONE);
-//                dialog.dismiss();
-                if(error instanceof NoConnectionError){
-                    Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(getActivity(),"something went wrong",Toast.LENGTH_LONG).show();
-                }
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> map = new HashMap<>();
-                map.put("Authorization", "Token " + token);
-                return map;
-            }
-        };
-        jsonObjectRequest2.setTag("MAP REQUEST");
-        requestQueue.add(jsonObjectRequest2);
-        jsonObjectRequest2.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
-        requestFinished(requestQueue);
-    }
-
-    private void requestFinished(RequestQueue queue) {
-
-        queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-
-            @Override
-            public void onRequestFinished(Request<Object> request) {
-                Log.d(TAG, "onRequestFinished: here too");
-                if(count == 0)nextRequest();
-                else if(count == 1) marklocation();
-
-            }
-        });
-
-    }
-
-    void nextRequest(){
-        count = 1;
-        next= url_unassigned;
-        getMarkers(next);
-    }
-
-    private void marklocation() {
-        Log.d(TAG, "mark location: SIZE" + latitude.size());
-        mClusterManager = new ClusterManager<MyItem>(getActivity(), map);
-        addmarkers();
-        map.setOnCameraIdleListener(mClusterManager);
-        map.setOnMarkerClickListener(mClusterManager);
-//        dialog.dismiss();
-    }
-
-    private void addmarkers() {
-
-        for(int i = 0 ;i<latitude.size();i++){
-            double lat = latitude.get(i);
-            double lon = longitude.get(i);
-            String title = villname.get(i);
-            MyItem item = new MyItem(lat,lon,title);
-            mClusterManager.addItem(item);
-        }
-        mClusterManager.cluster();
-        Log.d(TAG, "add markers: CLUSTER SIZE" + mClusterManager.getRenderer());
-
-    }
 }
