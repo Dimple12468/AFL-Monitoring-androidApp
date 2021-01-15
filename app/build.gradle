@@ -14,6 +14,7 @@ android {
         versionName "1.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -50,5 +51,8 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'io.nlopez.smartlocation:library:3.3.3'
 
 }

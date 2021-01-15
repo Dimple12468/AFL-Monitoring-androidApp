@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,9 +21,13 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +52,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.maps.android.clustering.ClusterManager;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +63,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
+import static androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED;
 
 public class
 adminHome extends Fragment {
@@ -72,9 +87,32 @@ adminHome extends Fragment {
     private ArrayList<String> villname;
     private String typeOfUser;
     private FloatingActionButton fab;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private AppBarConfiguration mAppBarConfiguration;
+    private String position = "-";
+    private String username, imagelink, newImageLink = " ";;
 
     public adminHome() {
         // Required empty public constructor
+    }
+
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu_top_bar,menu);
+//        MenuItem searchItem = menu.findItem(R.id.search_in_title);
+//        searchItem.setVisible(false);
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -86,20 +124,82 @@ adminHome extends Fragment {
         mapFragment = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map));
         fab = (FloatingActionButton) root.findViewById(R.id.fab);
 
+        drawerLayout = getActivity().findViewById(R.id.drawer_view);
+        navigationView = getActivity().findViewById(R.id.navigation_view);
+        drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED);
+
+        View header = navigationView.getHeaderView(0);
+        TextView textUsername = header.findViewById(R.id.name);
+        TextView textUser = header.findViewById(R.id.type_of_user);
+        ImageView userImage = header.findViewById(R.id.imageView);
+
         SharedPreferences preferences = getActivity().getSharedPreferences("tokenFile", Context.MODE_PRIVATE);
         typeOfUser = preferences.getString("role", "");
         token = preferences.getString("key", "");
+        username = preferences.getString("Name","");
+        imagelink  = preferences.getString("Image","");
+
+//        if(typeOfUser.equals("5"))
+//            position="Admin";
+//        if(typeOfUser.equals("2"))
+//            position="ADO";
+//        if(typeOfUser.equals("4"))
+//            position="DDA";
+
+
+        TextView title_top = root.findViewById(R.id.topTitleName);
+        if (root.isEnabled()){
+            title_top.setText("Home");
+        }else {
+            title_top.setText("AFL Monitoring");
+        }
+
+        Toolbar toolbar = (Toolbar) root.findViewById(R.id.appTitleBar);
+        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+        appCompatActivity.setSupportActionBar(toolbar);
+        appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setHasOptionsMenu(true);
+        appCompatActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         latitude = new ArrayList<>();
         longitude = new ArrayList<>();
         villname = new ArrayList<>();
+
+//        navigationView.inflateMenu(R.menu.admin_nav_drawer);
+//        navigationView.inflateHeaderView(R.layout.header_layout);
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.privacy, R.id.terms, R.id.help,R.id.advance_settings,R.id.logout_now)
+//                .setDrawerLayout(drawerLayout)
+//                .build();
+
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+                getActivity(),drawerLayout,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
+        {
+            @Override
+            public void onDrawerClosed(View drawerView)
+            {
+                //super.onDrawerClosed(drawerView);
+                drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView)
+            {
+                //super.onDrawerOpened(drawerView);
+                drawerLayout.setDrawerLockMode(LOCK_MODE_UNLOCKED);
+            }
+        };
+        drawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.setDrawerIndicatorEnabled(false);
+        mDrawerToggle.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+        mDrawerToggle.syncState();
 
         switch (typeOfUser) {
             case "1":
                 Toast.makeText(getActivity(), "login for farmer", Toast.LENGTH_SHORT).show();
                 break;
             case "2":
-//                Toast.makeText(getActivity(), "login for ado", Toast.LENGTH_SHORT).show();
+                position="ADO";
                 count =0;
                 fab.setVisibility(View.GONE);
                 url_assigned = Globals.map_Pending_ADO;
@@ -109,7 +209,7 @@ adminHome extends Fragment {
                 Toast.makeText(getActivity(), "login for block admin", Toast.LENGTH_SHORT).show();
                 break;
             case "4":
-//                Toast.makeText(getActivity(), "login for dda", Toast.LENGTH_SHORT).show();
+                position="DDA";
                 count =0;
                 fab.setVisibility(View.GONE);
                 url_assigned = Globals.map_Assigned_DDA;
@@ -117,7 +217,7 @@ adminHome extends Fragment {
                 callForMap();
                 break;
             case "5":
-//                Toast.makeText(getActivity(), "login for admin", Toast.LENGTH_SHORT).show();
+                position="Admin";
                 count =0;
                 fab.setVisibility(View.VISIBLE);
                 url_assigned = Globals.map_Assigned_Admin;
@@ -129,6 +229,71 @@ adminHome extends Fragment {
                 Toast.makeText(getActivity(), "login for super admin", Toast.LENGTH_SHORT).show();
                 break;
         }
+
+        textUsername.setText(username);
+        textUser.setText(position);
+
+        char anc = imagelink.charAt(4);
+        int comp = Character.compare(anc, 's');
+        if(comp!=0){
+            newImageLink = imagelink;
+            newImageLink =  newImageLink.substring(4);
+            newImageLink = "https" + newImageLink;
+        }
+        Picasso.get().load(newImageLink).error(R.drawable.user_image).into(userImage,new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            @Override
+            public void onError(Exception e) {
+                Log.d("error with image link: ",e.getMessage());
+            }
+        });
+
+        navigationView.setBackgroundColor(getResources().getColor(R.color.white));
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+
+                    case R.id.logout_now:
+                        SharedPreferences.Editor editor = getActivity().getSharedPreferences("tokenFile", Context.MODE_PRIVATE).edit();
+                        editor.clear();
+                        editor.commit();
+                        drawerLayout.closeDrawers();
+                        Intent intent = new Intent(getActivity(), InitialPage.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                        return true;
+
+                    case R.id.privacy:
+                        drawerLayout.closeDrawers();
+                        Toast.makeText(getActivity(), "privacy clicked", Toast.LENGTH_SHORT).show();
+                        return true;
+
+                    case R.id.terms:
+                        item.setChecked(true);
+                        Toast.makeText(getActivity(), "terms clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.help:
+                        item.setChecked(true);
+                        Toast.makeText(getActivity(), "help clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                    case R.id.advance_settings:
+                        item.setChecked(true);
+                        Toast.makeText(getActivity(), "settings clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        return true;
+
+                }
+                return false;
+            }
+        });
 
 //        final TextView textView = root.findViewById(R.id.text_home);
 //        adminhomeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

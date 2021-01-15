@@ -11,7 +11,7 @@
 
     <include
         android:id="@+id/app__bar_report"
-        layout="@layout/app_bar_admin"
+        layout="@layout/app_top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

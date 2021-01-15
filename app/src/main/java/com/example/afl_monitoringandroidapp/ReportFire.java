@@ -166,7 +166,7 @@ public class ReportFire extends AppCompatActivity {
         submit = findViewById(R.id.submit_fire_report);
 
 
-        title_top = findViewById(R.id.app_name);
+        title_top = findViewById(R.id.topTitleName);
         if (title_top.isEnabled()){
             title_top.setText("Report");
         }else {
