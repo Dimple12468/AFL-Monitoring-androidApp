@@ -149,9 +149,9 @@ adminHome extends Fragment {
 
         TextView title_top = root.findViewById(R.id.topTitleName);
         if (root.isEnabled()){
-            title_top.setText("Home");
+            title_top.setText(R.string.home);
         }else {
-            title_top.setText("AFL Monitoring");
+            title_top.setText(R.string.app_name);
         }
 
         Toolbar toolbar = (Toolbar) root.findViewById(R.id.appTitleBar);

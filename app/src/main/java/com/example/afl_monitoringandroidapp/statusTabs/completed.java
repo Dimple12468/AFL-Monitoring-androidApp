@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.afl_monitoringandroidapp.Globals;
 import com.example.afl_monitoringandroidapp.R;
 
 public class completed extends Fragment {
+
+    private String statusURL = Globals.completedDatewiseList;
 
     public completed() {
         // Required empty public constructor

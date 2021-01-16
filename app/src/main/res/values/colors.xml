@@ -12,5 +12,7 @@
     <color name="transparent">#AA000000</color>
     <color name="opaque_color">#707070</color>
     <color name="theme_color">#E03B3B</color>
+    <color name="tabSelectColor">#DC5C58</color>
+    <color name="tabTextColor">#9A9696</color>
 
 </resources>
