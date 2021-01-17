@@ -1,38 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".adminTabs.adminAdo">
+    android:background="#FFFFFF">
+
+    <!--include
+        layout="@layout/search_view"
+        android:id="@+id/searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/-->
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/app_top_bar"
+        android:id="@+id/app__bar_ado"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
-        android:id="@+id/adm_ado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="List of District"
+        android:id="@+id/districtlist"
+        android:textSize="21dp"
+        android:padding="10dp"
+        android:paddingTop="18dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:fontFamily="@font/arial"
+        android:background="@color/white"
+        android:layout_below="@+id/app__bar_ado"/>
 
-    <Button
-        android:id="@+id/logOut_ado"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/adolist"
+        android:background="#FFFFFF"
+        android:layout_below="@id/districtlist"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="match_parent"/>
+    <!--android:layout_above="@id/bottom_nav_for_ado"-->
+
+    <!--com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_for_ado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="LOG OUT"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adm_ado" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="#FFFFFF"
+        android:isScrollContainer="true"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_bottom_navigation_bar" /-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/ado_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:indeterminateTint="@color/btn_submit"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible" />
+    <!--    android:indeterminateDrawable="@drawable/progress"-->
+
+</RelativeLayout>
