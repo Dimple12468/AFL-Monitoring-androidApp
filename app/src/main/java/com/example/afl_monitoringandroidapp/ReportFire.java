@@ -476,7 +476,7 @@ public class ReportFire extends AppCompatActivity {
             String address1 = editAddress1.getText().toString().trim();
             if(!name.isEmpty() && !pnumber.isEmpty())// && !village.isEmpty() && !address1.isEmpty() && !(district_spinner.getSelectedItemPosition()==0))
             {
-                submit.setBackgroundResource(R.color.btn_submit);
+                submit.setBackgroundResource(R.color.theme_color);
             }
             else{
                 submit.setBackgroundResource(R.color.btn_before_text);

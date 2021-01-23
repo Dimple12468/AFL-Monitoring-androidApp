@@ -16,6 +16,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
 
     private int tabcount;
     private Context mContext;
+    private int mPosition;
 
     public TabPageAdapter(FragmentManager fm, int tabcount, Context context) {
         super(fm);
@@ -23,28 +24,44 @@ public class TabPageAdapter extends FragmentPagerAdapter {
         this.mContext = context;
     }
 
+
+    public TabPageAdapter(FragmentManager childFragmentManager, Context context) {
+        super(childFragmentManager);
+        this.mContext = context;
+    }
+
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
-        switch(position){
-            case 0:
-                fragment = new pending();
-                break;
-            case 1:
-//                Toast.makeText(mContext, "ongoing tab clicked", Toast.LENGTH_SHORT).show();
-                fragment = new ongoing();
-                break;
-            case 2:
-//                Toast.makeText(mContext, "completed tab clicked", Toast.LENGTH_SHORT).show();
-                fragment = new completed();
-                break;
-        }
 
-        return fragment;
+        return completed.newInstance(position + 1);
+
+//        Fragment fragment = null;
+//        switch(position){
+//            case 0:
+//                fragment = new completed();
+//                mPosition = 0;
+//                break;
+//            case 1:
+////                Toast.makeText(mContext, "ongoing tab clicked", Toast.LENGTH_SHORT).show();
+//                fragment = new completed();
+//                mPosition = 1;
+//                break;
+//            case 2:
+////                Toast.makeText(mContext, "completed tab clicked", Toast.LENGTH_SHORT).show();
+//                fragment = new completed();
+//                mPosition = 2;
+//                break;
+//        }
+//
+//        return fragment;
     }
 
     @Override
     public int getCount() {
         return tabcount;
     }
+
+//    public int getPosition() {
+//        return mPosition;
+//    }
 }

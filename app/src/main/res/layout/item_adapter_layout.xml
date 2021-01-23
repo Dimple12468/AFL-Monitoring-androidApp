@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/adminlocation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignWithParentIfMissing="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="8dp">
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@+id/my_letter"
+            android:ellipsize="end"
+            android:fontFamily="@font/arial"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dda_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@+id/my_letter"
+            android:fontFamily="@font/arial"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/my_letter"
+            android:textColor="@color/white"
+            android:fontFamily="@font/arial"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/alp_image"
+            android:layout_marginTop="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/rel_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dda_name"
+            android:textColor="#000000"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@+id/my_letter"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/ada_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/arial"
+                android:textColor="#000000"
+                android:textSize="10dp" />
+            <!-- android:layout_below="@id/dda_name"-->
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <!--/com.facebook.shimmer.ShimmerFrameLayout-->
+
+    <!--/RelativeLayout-->
+</RelativeLayout>
