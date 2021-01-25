@@ -44,6 +44,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.afl_monitoringandroidapp.Globals;
 import com.example.afl_monitoringandroidapp.Home;
 import com.example.afl_monitoringandroidapp.InitialPage;
+import com.example.afl_monitoringandroidapp.ProfilePage;
 import com.example.afl_monitoringandroidapp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -232,6 +233,19 @@ adminHome extends Fragment {
 
         textUsername.setText(username);
         textUser.setText(position);
+
+        //////////
+        //for image click to profile
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawers();
+                //Toast.makeText(getActivity(),"Synjnd",Toast.LENGTH_LONG).show();
+                Intent intent= new Intent(getActivity(), ProfilePage.class);
+                startActivity(intent);
+            }
+        });
+        //////////////////
 
         char anc = imagelink.charAt(4);
         int comp = Character.compare(anc, 's');

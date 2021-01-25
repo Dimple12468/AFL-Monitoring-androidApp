@@ -58,6 +58,11 @@
             android:theme="@style/NoActionBar">
         </activity>
         <activity
+            android:name=".ProfilePage"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar">
+        </activity>
+        <activity
             android:name=".Home"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">

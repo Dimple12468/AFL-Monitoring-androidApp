@@ -18,5 +18,10 @@
     <string name="logout">Logout</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string-array name="profile_status">
+        <item>Pending</item>
+        <item>Ongoing</item>
+        <item>Completed</item>
+    </string-array>
 
 </resources>

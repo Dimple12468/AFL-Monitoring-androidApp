@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <solid android:color="#E03B3B" />
+        </shape>
+    </item>
+    <item
+        android:bottom="-300dp"
+        android:left="-150dp"
+        android:right="-150dp"
+        android:top="140dp"><!--distance from top is android:top,increasing left and right flatten the curve-->
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>
