@@ -48,6 +48,11 @@
             android:theme="@style/NoActionBar">
         </activity>
         <activity
+            android:name=".adminTabs.DistrictAdo_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar">
+        </activity>
+        <activity
             android:name=".ReportFire"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">

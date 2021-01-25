@@ -1,6 +1,7 @@
 package com.example.afl_monitoringandroidapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.afl_monitoringandroidapp.adminTabs.DistrictAdo_Activity;
 
 import java.util.ArrayList;
 
@@ -147,11 +150,11 @@ public class RecyclerViewAdapter_district extends RecyclerView.Adapter<RecyclerV
         }
         @Override
         public void onClick(View v) {
-            /*************
-             Intent intent = new Intent(mContext,DistrictAdo_Activity.class);
+
+             Intent intent = new Intent(mContext, DistrictAdo_Activity.class);
              intent.putExtra("district", mDistrictNames.get(this.getAdapterPosition()));
              mContext.startActivity(intent);
-             */
+
         }
     }
 }
