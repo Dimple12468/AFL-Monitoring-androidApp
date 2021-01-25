@@ -19,8 +19,8 @@
 
     <fragment
         android:id="@+id/completed_ado"
-        android:name="com.example.afl_monitoringandroidapp.statusTabs.completed"
+        android:name="com.example.afl_monitoringandroidapp.statusTabs.commonStatusTab"
         android:label="@string/completed"
-        tools:layout="@layout/fragment_completed" />
+        tools:layout="@layout/fragment_status_common" />
 
 </navigation>

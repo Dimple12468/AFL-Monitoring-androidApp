@@ -13,20 +13,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,7 +36,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.afl_monitoringandroidapp.Globals;
-import com.example.afl_monitoringandroidapp.Home;
 import com.example.afl_monitoringandroidapp.InitialPage;
 import com.example.afl_monitoringandroidapp.ProfilePage;
 import com.example.afl_monitoringandroidapp.R;
@@ -68,16 +61,16 @@ import java.util.Map;
 import static androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
 import static androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED;
 
-public class
-adminHome extends Fragment {
+public class adminHome extends Fragment {
 
+    private static adminHome mInstance;
     private adminHomeViewModel adminhomeViewModel;
     private SupportMapFragment mapFragment;
     private String token;
     private String TAG = "Map";
     private GoogleMap map = null;
-    private String url_unassigned;
-    private String url_assigned;
+    private String url_unassigned = null;
+    private String url_assigned = null;
 //    private String url_count = Globals.map_Count_Admin;
     private String next,next1;
     private RequestQueue requestQueue;
@@ -93,6 +86,7 @@ adminHome extends Fragment {
     private AppBarConfiguration mAppBarConfiguration;
     private String position = "-";
     private String username, imagelink, newImageLink = " ";;
+
 
     public adminHome() {
         // Required empty public constructor
@@ -114,6 +108,26 @@ adminHome extends Fragment {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mInstance = this;
+        requestQueue = Volley.newRequestQueue(getContext());
+    }
+
+    public static adminHome getInstance() {
+        return mInstance;
+    }
+
+    public static adminHome newInstance(){//String URLassigned,String URLunassigned) {
+        adminHome fragment = new adminHome();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("Map URL assigned: ",URLassigned );
+//        bundle.putString("Map URL Unassigned: ", URLunassigned);
+//        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -200,30 +214,39 @@ adminHome extends Fragment {
                 Toast.makeText(getActivity(), "login for farmer", Toast.LENGTH_SHORT).show();
                 break;
             case "2":
+                adminHome.newInstance();//url_assigned,url_unassigned);
+                adminHome.getInstance();
                 position="ADO";
                 count =0;
                 fab.setVisibility(View.GONE);
                 url_assigned = Globals.map_Pending_ADO;
+//                adminHome.newInstance();//url_assigned,url_unassigned);
                 callForMap();
                 break;
             case "3":
                 Toast.makeText(getActivity(), "login for block admin", Toast.LENGTH_SHORT).show();
                 break;
             case "4":
+                adminHome.newInstance();//url_assigned,url_unassigned);
+                adminHome.getInstance();
                 position="DDA";
                 count =0;
                 fab.setVisibility(View.GONE);
                 url_assigned = Globals.map_Assigned_DDA;
                 url_unassigned = Globals.map_Unassigned_DDA;
+//                adminHome.newInstance();//url_assigned,url_unassigned);
                 callForMap();
                 break;
             case "5":
+                adminHome.newInstance();//url_assigned,url_unassigned);
+                adminHome.getInstance();
                 position="Admin";
                 count =0;
                 fab.setVisibility(View.VISIBLE);
                 url_assigned = Globals.map_Assigned_Admin;
                 url_unassigned = Globals.map_Unassigned_Admin;
 //                callForMap(url_assigned,url_unassigned);
+//                adminHome.newInstance();//url_assigned,url_unassigned);
                 callForMap();
                 break;
             case "6":
@@ -393,7 +416,7 @@ adminHome extends Fragment {
     }
 
     void getMarkers(String url) {
-        requestQueue = Volley.newRequestQueue(getContext());
+//        requestQueue = Volley.newRequestQueue(getContext());
         final JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -405,9 +428,14 @@ adminHome extends Fragment {
                         JSONObject c = jsonArray.getJSONObject(i);
                         Double lat = Double.valueOf(c.getString("latitude"));
                         Double lon = Double.valueOf(c.getString("longitude"));
-//                        JSONObject villObj = c.getJSONObject("village_name");
-//                        String vill = villObj.getString("village");
-                        String vill = c.getString("village_name");
+                        String vill;
+                        try {
+                            JSONObject villOBJ = c.getJSONObject("village_name");
+                            vill = villOBJ.getString("village");
+                        } catch (JSONException e) {
+                            vill = "NULL";
+                        }
+
                         latitude.add(lat);
                         longitude.add(lon);
                         villname.add(vill);

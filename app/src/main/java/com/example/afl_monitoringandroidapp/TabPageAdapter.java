@@ -1,16 +1,12 @@
 package com.example.afl_monitoringandroidapp;
 
 import android.content.Context;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.afl_monitoringandroidapp.statusTabs.completed;
-import com.example.afl_monitoringandroidapp.statusTabs.ongoing;
-import com.example.afl_monitoringandroidapp.statusTabs.pending;
+import com.example.afl_monitoringandroidapp.statusTabs.commonStatusTab;
 
 public class TabPageAdapter extends FragmentPagerAdapter {
 
@@ -33,7 +29,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return completed.newInstance(position + 1);
+        return commonStatusTab.newInstance(position + 1);
 
 //        Fragment fragment = null;
 //        switch(position){
