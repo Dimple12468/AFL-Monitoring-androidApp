@@ -163,14 +163,14 @@ public class commonStatusTab extends Fragment {
                 isPending = false; isOngoing = true; isCompleted = false;
                 statusURL = Globals.ongoingDatewiseList;
 //                getLocations(statusURL);
-//                getdata(statusURL);
+                getdata(statusURL);
 //                combineData();
                 break;
             case 3:
                 isPending = false; isOngoing = false; isCompleted = true;
                 statusURL = Globals.completedDatewiseList;
 //                getLocations(statusURL);
-//                getdata(statusURL);
+                getdata(statusURL);
 //                combineData();
                 break;
         }
@@ -214,7 +214,6 @@ public class commonStatusTab extends Fragment {
     }
 
     public void getdata(String URL){
-        sections = new ArrayList<>();
         this.statusURL = URL;
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
@@ -291,8 +290,8 @@ public class commonStatusTab extends Fragment {
                     pbCenterLoading.setVisibility(View.GONE);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(),"An exception occured",Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "onResponse: inside the evception" + e);
+                    Toast.makeText(getActivity(),"An exception occurred",Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onResponse: inside the exception" + e);
                     pbCenterLoading.setVisibility(View.GONE);
                     pbBottomLoading.setVisibility(View.GONE);
                 }
@@ -425,6 +424,7 @@ public class commonStatusTab extends Fragment {
 
 
     public void combineData(){
+        sections = new ArrayList<>();
         int x;
         for (x=0;x<date.size();x++){
 //            if (x==(date.size()-1)) {
@@ -458,7 +458,7 @@ public class commonStatusTab extends Fragment {
         }
         sections.add(new section(commonDate,mID_, AddressCombine, AddressCombine,ADONameCombine,DDANameCombine,isPending,isOngoing,isCompleted));
 
-        statusAdapter.notifyDataSetChanged();
+//        statusAdapter.notifyDataSetChanged();
 //        isNextBusy = false;
 //        pbBottomLoading.setVisibility(View.GONE);
 //        pbCenterLoading.setVisibility(View.GONE);
